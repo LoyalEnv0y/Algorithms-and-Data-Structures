@@ -2,11 +2,11 @@ package algorithms.unionFind;
 
 import java.util.Scanner;
 
-public class UI {
+public class PercolationUI {
     private final Scanner scanner;
     private Percolation perc;
 
-    public UI() {
+    public PercolationUI() {
         this.scanner = new Scanner(System.in);
     }
 

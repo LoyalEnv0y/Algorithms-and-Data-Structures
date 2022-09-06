@@ -7,12 +7,12 @@ import java.util.Arrays;
  */
 public class Percolation {
     int N;
-    int[] grid;
+    String[] grid;
     WeightedUnionUF perc;
 
     public Percolation(int N) {
         this.N = N;
-        this.grid = new int[N * N];
+        this.grid = new String[N * N];
 
         /*
          * The UnionFind structure below (perc) will have 2 more elements in
@@ -32,7 +32,7 @@ public class Percolation {
          */
         this.perc = new WeightedUnionUF(N*N + 2);
 
-        Arrays.fill(grid, 0);
+        Arrays.fill(grid, "🔴");
     }
 
     /* Open row i, column j (all 0 based)
@@ -47,7 +47,7 @@ public class Percolation {
      * need to account for that.
      */
     public void open(int i, int j) {
-        grid[i * N + j] = 1;
+        grid[i * N + j] = "🟢";
 
         // Unionize with the head
         if (i == 0) {
@@ -58,7 +58,6 @@ public class Percolation {
         if (i == N-1) {
             perc.union((i * N + j) + 1, N*N+1);
         }
-
         // Check the neighbours to see if they are open. If so, we unionize
         // them with the newly opened grid.
         checkNeighbours(i, j);
@@ -70,7 +69,7 @@ public class Percolation {
             return false;
         }
 
-        return grid[i * N + j] == 1;
+        return grid[i * N + j].equals("🟢");
     }
 
     public boolean isFull(int i, int j) {
@@ -123,7 +122,7 @@ public class Percolation {
             if ((i % N == 0) && (i != 0)) {
                 sb.append("\n");
             }
-            sb.append(grid[i]).append("  ");
+            sb.append(grid[i]).append(" ");
         }
 
         return sb.toString();
