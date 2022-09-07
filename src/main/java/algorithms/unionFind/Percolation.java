@@ -106,7 +106,7 @@ public class Percolation {
             perc.union(origin+1, top+1);
         }
         // Check the right
-        if (isOpen(i, j+1)){
+        if (j != N-1 && isOpen(i, j+1)){
             perc.union(origin+1, right+1);
         }
         // Check the bottom
@@ -114,7 +114,7 @@ public class Percolation {
             perc.union(origin+1, bottom+1);
         }
         // Check the left
-        if (isOpen(i, j-1)) {
+        if (j != 0 && isOpen(i, j-1)) {
             perc.union(origin+1, left+1);
         }
     }

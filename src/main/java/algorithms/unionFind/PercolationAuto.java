@@ -31,10 +31,11 @@ public class PercolationAuto {
 
             perc.open(iAxis, jAxis);
             openedTiles++;
-            perc.finish();
+            System.out.println(iAxis + ", " + jAxis + ": " + perc.isFull(iAxis, jAxis));
 //            Thread.sleep(100);
         }
 
+        perc.finish();
         System.out.println(perc);
         System.out.print("Total Opened Tiles: " + this.openedTiles);
     }
