@@ -23,16 +23,20 @@ public class PercolationAuto {
             System.out.println(perc);
             System.out.println();
 
-            int testI = coords[i].charAt(0) - '0';
-            int testJ = coords[i].charAt(3) - '0';
+            String[] coordsSplit = coords[i]
+                    .replace(" ", "").split(",");
 
-            perc.open(testI, testJ);
+            int iAxis = Integer.parseInt(coordsSplit[0]);
+            int jAxis = Integer.parseInt(coordsSplit[1]);
+
+            perc.open(iAxis, jAxis);
             openedTiles++;
-//            Thread.sleep(500);
+            System.out.println(iAxis + ", " + jAxis + ": " + perc.isFull(iAxis, jAxis));
+//            Thread.sleep(100);
         }
 
+        perc.finish();
         System.out.println(perc);
-        System.out.println(perc.percolates());
         System.out.print("Total Opened Tiles: " + this.openedTiles);
     }
 

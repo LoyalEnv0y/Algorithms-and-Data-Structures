@@ -21,7 +21,14 @@ public class WeightedUnionUF {
             return i;
         }
 
-        // below line makes sure the tree is flattened so that maximum traversal is kept to minimum.
+        /*
+         * Below line makes sure the tree is flattened so that maximum
+         * traversal is kept to minimum.
+         *
+         * For example if id[3] = 1 and id[1] = 5 then when we run the
+         * below line with $i being 3 it becomes id[3] = id[1] which
+         * means id[3] is now directly connected to id[5] -> id[3] = 5
+         */
         id[i] = id[id[i]];
         return root(id[i]);
     }
