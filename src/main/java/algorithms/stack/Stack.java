@@ -12,7 +12,8 @@ public class Stack<T> {
     private int lastIndex;
 
     public Stack(int N) {
-        @SuppressWarnings("unchecked") final T[] s = (T[]) new Object[N];
+        @SuppressWarnings("unchecked")
+        final T[] s = (T[]) new Object[N];
 
         this.stack = s;
         this.lastIndex = -1;
