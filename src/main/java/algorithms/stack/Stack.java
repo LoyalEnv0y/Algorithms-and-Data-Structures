@@ -5,15 +5,16 @@ import java.util.Arrays;
 /**
  * <p>Stacks are LIFO (Last in first out) meaning that you examine the
  * item that is most recently added.
+ *
  * <p>Push an item to the end of the stack and pop from the end of the stack.
  */
 public class Stack<T> {
-    private final T[] stack;
+    private T[] stack;
     private int lastIndex;
 
-    public Stack(int N) {
+    public Stack() {
         @SuppressWarnings("unchecked")
-        final T[] s = (T[]) new Object[N];
+        final T[] s = (T[]) new Object[1];
 
         this.stack = s;
         this.lastIndex = -1;
@@ -21,6 +22,7 @@ public class Stack<T> {
 
     /**
      * Checks if the stack is empty. It only includes the {@code Non-Null} items int the array.
+     *
      * @return true if the {@code lastIndex} is equal to -1.
      */
     public boolean isEmpty() {
@@ -28,7 +30,7 @@ public class Stack<T> {
     }
 
     /**
-     * @return true if all the items in the stack are not filled
+     * @return true if all the items in the stack are filled
      * and all indexes have values.
      */
     public boolean isFull() {
@@ -45,19 +47,17 @@ public class Stack<T> {
 
     /**
      * <p>Appends the given element to the first index that's value is {@code null}.
-     * Increments the lastIndex to keep track of the last {@code Non-Null} value's index.
-     * If the stack is full then it throws a StackIsFullException.
-     * @param value the value to be appended at the end of the stack
-     * @throws StackIsFullException
-     *         if  {@code lastIndex == stack.length() + 1}
+     * Increments the {@code lastIndex} to keep track of the last {@code Non-Null}
+     * value's index.
+     *
+     * <p>If the stack is full, instead of throwing an exception, it resizes
+     * the array twice the capacity of the original array by calling {@code resize()}.
+     *
+     * @param value the value to be appended at the end of the stack.
      */
     public void push(T value) {
         if (isFull()) {
-            throw new StackIsFullException(
-                    "\n" + StackIsFullException.class.getSimpleName() +
-                            "\n  Cannot add " + value +
-                            " to stack while stack is full"
-            );
+            resize(stack.length * 2);
         }
 
         lastIndex++;
@@ -66,8 +66,15 @@ public class Stack<T> {
 
     /**
      * <p>Sets the last {@code Non-Null} item to {@code Null}.
-     * Decrements the lastIndex to keep track of the last {@code Non-Null} value's index.
-     * If the stack is already empty it throws a StackIsEmptyException.
+     * Decrements the {@code lastIndex} to keep track of the last {@code Non-Null}
+     * value's index.
+     *
+     * <p>If the {@code stack} is only 25% or less full, then the function calls
+     * {@code resize()} method with the half of the current array's length to shrink it
+     * by half.
+     *
+     * <p>If the stack is already empty it throws a StackIsEmptyException.
+     *
      * @return the removed item's value.
      * @throws StackIsEmptyException
      *         if {@code lastIndex == -1}
@@ -85,7 +92,29 @@ public class Stack<T> {
         stack[lastIndex] = null;
         lastIndex--;
 
+        if (lastIndex <= (stack.length-1) / 4) {
+            resize(stack.length / 2);
+        }
+
         return toReturn;
+    }
+
+    /**
+     * <p>When an array needs to be resized (shrink or grow), this method is being called.
+     * It creates a new array with the given size and copies all the elements of the
+     * original array (only {@code Non-Null} values are copied) to the newly created array.
+     *
+     * @param newLength is the length specified by the user to be used in the new array.
+     */
+    private void resize(int newLength) {
+        @SuppressWarnings("unchecked")
+        T[] resizedStack = (T[]) new Object[newLength];
+
+        for (int i = 0; i < size(); i++) {
+            resizedStack[i] = stack[i];
+        }
+
+        this.stack = resizedStack;
     }
 
     /**
@@ -105,7 +134,7 @@ public class Stack<T> {
     /**
      * Creates a new array that only has {@code Non-Null} values of the stack.
      *
-     * @return the sliced array with {@code Non-Null} values
+     * @return the sliced array with {@code Non-Null} values.
      */
     @Override
     public String toString() {

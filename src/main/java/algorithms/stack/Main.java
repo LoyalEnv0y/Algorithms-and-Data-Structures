@@ -2,23 +2,46 @@ package algorithms.stack;
 
 public class Main {
     public static void main(String[] args) {
-        // Initialize a new stack of integers with capacity 100
-        Stack<Integer> myStack = new Stack<>(100);
+        // Initialize a new stack of integers
+        Stack<Integer> myStack = new Stack<>();
 
-        // Fill the stack
-        for (int i = 1; i <= 10; i++) {
+        // check size and capacity
+        printSizeAndCap(myStack);
+        System.out.println();
+
+        // Fill the stack, print it and check it's size and capacity
+        for (int i = 1; i <= 8; i++) {
             myStack.push(i);
         }
-        System.out.println("Stack: " + myStack);
+        printStack(myStack);
+        printSizeAndCap(myStack);
+        System.out.println();
 
         // Pop the last Non-Null item in the stack
         System.out.println("Removed item: " + myStack.pop());
-        System.out.println("Stack: " + myStack);
+        printStack(myStack);
+        printSizeAndCap(myStack);
+        System.out.println();
 
-        // Get size = 99
-        System.out.println("Size: " + myStack.size());
-        // Get capacity = 100
-        System.out.println("Capacity: " + myStack.cap());
+        // Remove items until the size of the array is 25% of capacity
+        while (myStack.size() > 2) {
+            System.out.println("Removed item: " + myStack.pop());
+        }
+
+        printStack(myStack);
+        printSizeAndCap(myStack);
+        System.out.println();
+    }
+
+    private static void printSizeAndCap(Stack<?> stack) {
+        // Print size
+        System.out.println("Size: " + stack.size());
+        // Print capacity
+        System.out.println("Capacity: " + stack.cap());
+    }
+
+    private static void printStack(Stack<?> stack) {
+        System.out.println("Stack: " + stack);
     }
 }
 
