@@ -3,7 +3,7 @@ package algorithms.stack;
 import java.util.Arrays;
 
 /**
- * <p>Stacks are LIFO (Last in first out) meaning that you examine the
+ * <p>Stacks are LIFO (Last in first out) meaning that you process the
  * item that is most recently added.
  *
  * <p>Push an item to the end of the stack and pop from the end of the stack.
@@ -21,7 +21,8 @@ public class Stack<T> {
     }
 
     /**
-     * Checks if the stack is empty. It only includes the {@code Non-Null} items int the array.
+     * <p>Checks if the stack is empty. It only includes the {@code Non-Null}
+     * items int the array.
      *
      * @return true if the {@code lastIndex} is equal to -1.
      */
@@ -30,6 +31,8 @@ public class Stack<T> {
     }
 
     /**
+     * <p>Checks if the Stack is full
+     *
      * @return true if all the items in the stack are filled
      * and all indexes have values.
      */
@@ -46,12 +49,12 @@ public class Stack<T> {
     }
 
     /**
-     * <p>Appends the given element to the first index that's value is {@code null}.
-     * Increments the {@code lastIndex} to keep track of the last {@code Non-Null}
-     * value's index.
+     * <p>Appends the given element to the first index that's value is
+     * {@code null}. Increments the {@code lastIndex} to keep track of
+     * the last {@code Non-Null} value's index.
      *
-     * <p>If the stack is full, instead of throwing an exception, it resizes
-     * the array twice the capacity of the original array by calling {@code resize()}.
+     * <p>If the stack is full, instead of throwing an exception, it
+     * doubles the size of the array calling {@code resize()}.
      *
      * @param value the value to be appended at the end of the stack.
      */
@@ -65,13 +68,13 @@ public class Stack<T> {
     }
 
     /**
-     * <p>Sets the last {@code Non-Null} item to {@code Null}.
-     * Decrements the {@code lastIndex} to keep track of the last {@code Non-Null}
+     * <p>Sets the last {@code Non-Null} item to {@code Null}. Decrements
+     * the {@code lastIndex} to keep track of the last {@code Non-Null}
      * value's index.
      *
-     * <p>If the {@code stack} is only 25% or less full, then the function calls
-     * {@code resize()} method with the half of the current array's length to shrink it
-     * by half.
+     * <p>If the {@code stack} is only 25% or less full, then it calls
+     * {@code resize()} method with the half of the current array's length
+     * to shrink it by half.
      *
      * <p>If the stack is already empty it throws a StackIsEmptyException.
      *
@@ -91,19 +94,22 @@ public class Stack<T> {
         stack[lastIndex] = null;
         lastIndex--;
 
-        if (lastIndex <= (stack.length - 1) / 4) {
-            resize(stack.length / 2);
+        if (lastIndex <= (cap() - 1) / 4) {
+            resize(cap() / 2);
         }
 
         return toReturn;
     }
 
     /**
-     * <p>When an array needs to be resized (shrink or grow), this method is being called.
-     * It creates a new array with the given size and copies all the elements of the
-     * original array (only {@code Non-Null} values are copied) to the newly created array.
+     * <p>When a stack needs to be resized (shrink or grow), this method is
+     * being called. It creates a new array with the given size and copies
+     * all the elements of the original stack (only {@code Non-Null} values
+     * are copied) to the newly created array. Sets the stack to be the new
+     * array.
      *
-     * @param newLength is the length specified by the user to be used in the new array.
+     * @param newLength is the length specified by the user to be used in
+     *                 the new array.
      */
     private void resize(int newLength) {
         @SuppressWarnings("unchecked")
