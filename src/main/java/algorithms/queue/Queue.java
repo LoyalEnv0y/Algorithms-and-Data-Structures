@@ -25,7 +25,7 @@ public class Queue<T> {
     }
 
     /**
-     * <p>Checks if the stack is empty. It checks the stack with tail value.
+     * <p>Checks if the queue is empty. It checks the queue with tail value.
      *
      * @return true if the {@code tailIndex} is equal to -1.
      */
@@ -34,17 +34,17 @@ public class Queue<T> {
     }
 
     /**
-     * <p>Checks if the stack is full.
+     * <p>Checks if the queue is full.
      *
      * @return true if {@code tailIndex} is one less compared to the
-     * length of the stack.
+     * length of the queue.
      */
     public boolean isFull() {
         return tailIndex == queue.length - 1;
     }
 
     /**
-     * @return Returns the head of the queue. Ignores {@code Non-Null} items.
+     * @return the head of the queue. Ignores {@code Non-Null} items.
      * If the queue is empty then it returns null.
      */
     public T getHead() {
@@ -52,11 +52,11 @@ public class Queue<T> {
     }
 
     /**
-     * <p>Same as {@code getHead}. Only difference is that this method returns
-     * the tail of the queue.
+     * <p>Same as {@code getHead}. Only difference is that this method
+     * returns the tail of the queue.
      *
-     * @return Returns the tail of the queue. Ignores {@code Non-Null} items.
-     * If the queue is empty then it returns null.
+     * @return Returns the tail of the queue. Ignores {@code Non-Null}
+     * items. If the queue is empty then it returns null.
      */
     public T getTail() {
         return (isEmpty()) ? null : queue[tailIndex];
@@ -64,11 +64,11 @@ public class Queue<T> {
 
     /**
      * <p>Appends the given item to the end of the queue. Increments the
-     * {@code tailIndex} by one. If this is the first item to be queued, it
-     * will assign the {@code headIndex} as 0.
+     * {@code tailIndex} by one. If this is the first item to be queued,
+     * it will assign the {@code headIndex} as 0.
      *
      * <p>If the queue is full then it calls the {@code resize()} method
-     * to double the size of the array.
+     * to double the size of the queue.
      *
      * @param item is the item to be added to the queue
      */
