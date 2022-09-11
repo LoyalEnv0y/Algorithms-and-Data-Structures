@@ -76,8 +76,7 @@ public class Stack<T> {
      * <p>If the stack is already empty it throws a StackIsEmptyException.
      *
      * @return the removed item's value.
-     * @throws StackIsEmptyException
-     *         if {@code lastIndex == -1}
+     * @throws StackIsEmptyException if {@code lastIndex == -1}
      */
     public T pop() {
         if (isEmpty()) {
@@ -92,7 +91,7 @@ public class Stack<T> {
         stack[lastIndex] = null;
         lastIndex--;
 
-        if (lastIndex <= (stack.length-1) / 4) {
+        if (lastIndex <= (stack.length - 1) / 4) {
             resize(stack.length / 2);
         }
 
