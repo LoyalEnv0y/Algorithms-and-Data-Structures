@@ -1,6 +1,6 @@
 package algorithms.sorting;
 
-public class SelectionSort {
+public class SelectionSort implements Sorting{
     public void sort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int min = i;
@@ -13,20 +13,5 @@ public class SelectionSort {
 
             exchange(arr, i, min);
         }
-    }
-
-    private void exchange(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    public boolean isSorted(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) {
-                return false;
-            }
-        }
-        return true;
     }
 }

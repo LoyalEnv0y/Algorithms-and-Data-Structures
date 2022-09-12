@@ -1,28 +1,34 @@
 package algorithms.sorting;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        SelectionSort selectionSort = new SelectionSort();
-        int[] arr = new int[10];
+        int[] arr = new int[100000];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = i;
         }
-        shuffleArray(arr);
 
+        testSorting(new SelectionSort(), arr);
+        testSorting(new InsertionSort(), arr);
+    }
+
+    public static void testSorting(Sorting sortingType, int[] arr) {
+        System.out.println(sortingType.getClass().getSimpleName() + ": ");
+
+        shuffleArray(arr);
         //System.out.println(Arrays.toString(arr));
-        System.out.println(selectionSort.isSorted(arr));
-        System.out.println("\n**************\n");
 
         long startTime = System.nanoTime();
-        selectionSort.sort(arr);
+        sortingType.sort(arr);
         long endTime = System.nanoTime();
+
         //System.out.println(Arrays.toString(arr));
-        System.out.println(selectionSort.isSorted(arr));
+        System.out.println(sortingType.isSorted(arr));
         System.out.println((endTime - startTime * 1.0) / Math.pow(60, 5));
+
+        System.out.println();
     }
 
     // Shuffle the array using Knuth's shuffle algorithm -> https://www.youtube.com/watch?v=i8kD33wx9Mo
