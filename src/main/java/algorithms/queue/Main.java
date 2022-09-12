@@ -20,6 +20,12 @@ public class Main {
         printHeadAndTail(myQueue);
         System.out.println();
 
+        // Use the foreach loop that is available because of the iterable and iterator interfaces
+        for (int i : myQueue) {
+            System.out.print(i + ", ");
+        }
+        System.out.println("\n");
+
         // Dequeue From the queue
         System.out.println("Removed item: " + myQueue.dequeue());
         printSizeAndCap(myQueue);
@@ -30,6 +36,12 @@ public class Main {
         // Remove items until the size of the array is 25% of capacity
         while (myQueue.size() > 2) {
             System.out.println("Removed item: " + myQueue.dequeue());
+
+            // Check if the iterator works correctly after each dequeue
+            for (int i : myQueue) {
+                System.out.print(i + ", ");
+            }
+            System.out.println();
         }
         printSizeAndCap(myQueue);
         printQueue(myQueue);

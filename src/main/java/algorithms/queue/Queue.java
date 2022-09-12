@@ -1,6 +1,7 @@
 package algorithms.queue;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * <p>Queues are FIFO (First in first out) meaning that the least recent item
@@ -10,7 +11,7 @@ import java.util.Arrays;
  * and when an item needs to be taken it is always taken from the beginning
  * of the queue (head).
  */
-public class Queue<T> {
+public class Queue<T> implements Iterable<T> {
     private T[] queue;
     private int tailIndex;
     private int headIndex;
@@ -126,8 +127,8 @@ public class Queue<T> {
 
     /**
      * <p>When a queue needs to be resized (shrink or grow), this method
-     * is being called. It creates a new array with the given size and
-     * copies all the elements of the original queue (only {@code Non-Null}
+     * is called. It creates a new array with the given size and copies
+     * all the elements of the original queue (only {@code Non-Null}
      * values are copied) to the newly created array. Sets the queue to be
      * the new array.
      *
@@ -174,5 +175,50 @@ public class Queue<T> {
 
         T[] nonNullItems = Arrays.copyOfRange(this.queue, headIndex, tailIndex + 1);
         return Arrays.toString(nonNullItems);
+    }
+
+    /**
+     * <p>To satisfy the {@code Iterable} interface, {@code iterator}
+     * method needs to be implemented. Method is called when client tries
+     * to iterate over the queue with a {@code foreach} loop. It then
+     * returns a {@code QueueIterator} class to be used by the for loop.
+     *
+     * @return a new instance of {@code QueueIterator} class.
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new QueueIterator();
+    }
+
+    private class QueueIterator implements Iterator<T> {
+        private int index = headIndex;
+
+        /**
+         * <p>Checks if the current item in the {@code index} exists.
+         * It is being called at the beginning of every iteration in a
+         * {@code foreach} loop to check if the loop reached the end.
+         *
+         * @return true if the current index is higher than -1 <i>AND</i>
+         * index is less than or equal to the {@code tailIndex}.
+         */
+        @Override
+        public boolean hasNext() {
+            return index >= 0 && index <= tailIndex;
+        }
+
+        /**
+         * <p>Returns the element at the {@code index} in the queue.
+         * Increments the index by one. It is called when the inside
+         * of the {@code foreach} loop is finished executing and the
+         * loop needs to be advancing.
+         *
+         * @return the element at the {@code index} in the queue.
+         */
+        @Override
+        public T next() {
+            T item = queue[index];
+            index++;
+            return item;
+        }
     }
 }
