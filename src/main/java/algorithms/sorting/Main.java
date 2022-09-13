@@ -14,6 +14,7 @@ public class Main {
         testSorting(new InsertionSort(), arr);
         testSorting(new ShellSort(), arr);
         testSorting(new MergeSort(), arr);
+        testSorting(new QuickSort(), arr);
     }
 
     public static void testSorting(Sorting sortingType, int[] arr) {
@@ -28,7 +29,7 @@ public class Main {
 
         System.out.println(sortingType.isSorted(arr));
         //System.out.println(Arrays.toString(arr));
-        System.out.println((endTime - startTime) /  Math.pow(10, 9));
+        System.out.println((endTime - startTime) / Math.pow(10, 9));
 
         System.out.println();
     }
