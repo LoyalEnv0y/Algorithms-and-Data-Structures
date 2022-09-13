@@ -12,6 +12,7 @@ public class Main {
 
         testSorting(new SelectionSort(), arr);
         testSorting(new InsertionSort(), arr);
+        testSorting(new ShellSort(), arr);
     }
 
     public static void testSorting(Sorting sortingType, int[] arr) {
@@ -24,9 +25,9 @@ public class Main {
         sortingType.sort(arr);
         long endTime = System.nanoTime();
 
-        //System.out.println(Arrays.toString(arr));
         System.out.println(sortingType.isSorted(arr));
-        System.out.println((endTime - startTime * 1.0) / Math.pow(60, 5));
+        //System.out.println(Arrays.toString(arr));
+        System.out.println((endTime - startTime) /  Math.pow(10, 9));
 
         System.out.println();
     }
