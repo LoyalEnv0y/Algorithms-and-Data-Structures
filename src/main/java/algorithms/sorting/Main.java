@@ -13,6 +13,7 @@ public class Main {
         testSorting(new SelectionSort(), arr);
         testSorting(new InsertionSort(), arr);
         testSorting(new ShellSort(), arr);
+        testSorting(new MergeSort(), arr);
     }
 
     public static void testSorting(Sorting sortingType, int[] arr) {
