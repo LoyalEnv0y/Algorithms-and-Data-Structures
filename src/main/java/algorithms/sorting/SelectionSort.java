@@ -1,6 +1,6 @@
 package algorithms.sorting;
 
-public class SelectionSort implements Sorting{
+public class SelectionSort implements Sorting {
     public void sort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int min = i;
