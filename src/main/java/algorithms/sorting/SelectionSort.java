@@ -1,6 +1,7 @@
 package algorithms.sorting;
 
 public class SelectionSort implements Sorting {
+    @Override
     public void sort(int[] arr) {
         int length = arr.length;
 
