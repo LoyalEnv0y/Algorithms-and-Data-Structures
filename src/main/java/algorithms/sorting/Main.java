@@ -11,9 +11,11 @@ public class Main {
             arr[i] = i;
         }
 
-//        testSorting(new SelectionSort(), arr);
+        test(arr);
+
+/*        testSorting(new SelectionSort(), arr);
         testSorting(new InsertionSort(), arr);
-/*        testSorting(new ShellSort(), arr);
+        testSorting(new ShellSort(), arr);
         testSorting(new MergeSort(), arr);
         testSorting(new QuickSort(), arr);*/
     }
@@ -46,5 +48,25 @@ public class Main {
             arrayToShuffle[i] = arrayToShuffle[randomIndex];
             arrayToShuffle[randomIndex] = temp;
         }
+    }
+
+    public static void test(int[] arrToTest) {
+        shuffleArray(arrToTest);
+        ShellSort ss = new ShellSort();
+
+        long start = System.nanoTime();
+        ss.sort(arrToTest);
+        long end = System.nanoTime();
+        System.out.println("Normal: " + (end - start) / Math.pow(10, 9));
+        System.out.println("Sorted: " + ss.isSorted(arrToTest));
+
+
+        shuffleArray(arrToTest);
+
+        long start2 = System.nanoTime();
+        ss.mySort(arrToTest);
+        long end2 = System.nanoTime();
+        System.out.println("Mine: " + (end2 - start2) / Math.pow(10, 9));
+        System.out.println("Sorted: " + ss.isSorted(arrToTest));
     }
 }

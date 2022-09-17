@@ -3,14 +3,15 @@ package algorithms.sorting;
 public class ShellSort implements Sorting {
     @Override
     public void sort(int[] arr) {
-        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+        int interval = arr.length / 2;
 
-            for (int i = gap; i < arr.length; i++) {
-
-                for (int j = i; j >= gap && arr[j] < arr[j - gap]; j -= gap) {
-                    exchange(arr, j, j - gap);
+        while (interval > 0) {
+            for (int i = interval; i < arr.length; i++) {
+                for (int j = i; j >= interval && arr[j] < arr[j - interval]; j -= interval) {
+                    exchange(arr, j, j - interval);
                 }
             }
+            interval /= 2;
         }
     }
 }
