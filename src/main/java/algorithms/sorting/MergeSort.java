@@ -1,5 +1,7 @@
 package algorithms.sorting;
 
+import java.util.Arrays;
+
 public class MergeSort implements Sorting {
     @Override
     public void sort(int[] arr) {
@@ -10,16 +12,8 @@ public class MergeSort implements Sorting {
         }
 
         int middleIndex = length / 2;
-        int[] leftPart = new int[middleIndex];
-        int[] rightPart = new int[length - middleIndex];
-
-        for (int i = 0; i < middleIndex; i++) {
-            leftPart[i] = arr[i];
-        }
-
-        for (int i = middleIndex; i < length; i++) {
-            rightPart[i - middleIndex] = arr[i];
-        }
+        int[] leftPart = Arrays.copyOfRange(arr, 0, middleIndex);
+        int[] rightPart = Arrays.copyOfRange(arr, middleIndex, length);
 
         sort(leftPart);
         sort(rightPart);
