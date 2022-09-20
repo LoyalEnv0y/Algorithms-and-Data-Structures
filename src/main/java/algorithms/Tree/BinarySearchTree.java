@@ -49,7 +49,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         this.root = remove(this.root, value);
     }
 
-    public Node<T> remove(Node<T> node, T value) {
+    private Node<T> remove(Node<T> node, T value) {
         if (node == null) {
             return null;
         }
