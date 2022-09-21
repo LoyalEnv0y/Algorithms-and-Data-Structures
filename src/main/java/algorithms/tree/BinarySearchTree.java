@@ -1,6 +1,6 @@
 package algorithms.tree;
 
-public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     private Node<T> root;
 
     public Node<T> getRoot() {
