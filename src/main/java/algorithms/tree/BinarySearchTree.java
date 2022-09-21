@@ -1,6 +1,6 @@
-package algorithms.Tree;
+package algorithms.tree;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
     private Node<T> root;
 
     public Node<T> getRoot() {
@@ -143,7 +143,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return root == null;
     }
 
-    private static class Node<T extends Comparable<T>> {
+    public static class Node<T extends Comparable<T>> {
         private T value;
         private Node<T> leftChild;
         private Node<T> rightChild;
